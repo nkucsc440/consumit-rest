@@ -8,6 +8,10 @@ router.use(function(req, res, next) {
     next();
 });
 
+router.route('/')
+    .get(function(req, res){ res.send('API docs') })
+;
+
 var UserRoutes = require('./api/user');
 
 router.route('/users')
