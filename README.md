@@ -86,10 +86,10 @@ Response:
 {
     "user": {
         "_id": "[userid]",
-        email: "bob@gmail.com",
+        "email": "bob@gmail.com",
         "__v": 0,
-        firstName: "Robert",
-        lastName: "Smith"
+        "firstName": "Robert",
+        "lastName": "Smith"
     }
 }
 ```
