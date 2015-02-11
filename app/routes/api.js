@@ -48,4 +48,8 @@ router.route('/userConsumables/:id')
     .delete(function(req, res) { UserConsumableRoutes.deleteUserConsumable(req, res, req.params.id) })
 ;
 
+router.route('/uc/:id')
+    .get(function(req, res) { UserConsumableRoutes.getAllConsumablesOfUser(req, res, req.params.id) })
+;
+
 module.exports = router;
