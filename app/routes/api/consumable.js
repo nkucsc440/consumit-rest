@@ -17,11 +17,16 @@ module.exports.getAllConsumables = function(req, res) {
 
 module.exports.getSingleConsumable = function(req, res, id) {
 	Consumable.findById(id)
-		.populate('_users')
-		.exec(function(err, consumable) {
-		if (err) { res.send(err); }
-		res.json({ consumable: consumable });
-	});
+		.populate({ path: '_users' })
+		.exec(function(err, consumableUnpopulated) {
+			if (err) { res.send(err); }
+			Consumable.populate(consumableUnpopulated
+				, { path: '_users._consumer', model: 'User' }
+				, function(err, consumablePopulated) {
+					res.json({ consumable: consumablePopulated });
+				}
+			);
+		});
 };
 
 module.exports.updateConsumable = function(req, res, id) {
