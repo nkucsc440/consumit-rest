@@ -16,13 +16,15 @@ module.exports.getAllConsumables = function(req, res) {
 };
 
 module.exports.getSingleConsumable = function(req, res, id) {
-	Consumable.findById(id, function(err, consumable) {
+	Consumable.findById(id)
+		.populate('_users')
+		.exec(function(err, consumable) {
 		if (err) { res.send(err); }
 		res.json({ consumable: consumable });
 	});
 };
 
-module.exports.udpateConsumable = function(req, res, id) {
+module.exports.updateConsumable = function(req, res, id) {
 	Consumable.findByIdAndUpdate(id, {$set: req.body.consumable}, function(err, consumable) {
 		if (err) { res.send(err); }
 		res.json({ consumable: consumable });

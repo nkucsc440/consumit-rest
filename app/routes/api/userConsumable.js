@@ -10,7 +10,7 @@ module.exports.addUserConsumable = function(req, res) {
 
 module.exports.getAllUserConsumables = function(req, res) {
 	UserConsumable.find()
-		.populate('_consumer _consumable')
+		// .populate('_consumer _consumable')
 		.exec(function(err, userConsumables) {
 		if (err) { res.send(err); }
 		res.json({ userConsumables: userConsumables });
@@ -19,14 +19,14 @@ module.exports.getAllUserConsumables = function(req, res) {
 
 module.exports.getSingleUserConsumable = function(req, res, id) {
 	UserConsumable.findById(id)
-		.populate('_consumer _consumable')
+		// .populate('_consumer _consumable')
 		.exec(function(err, userConsumable) {
 			if (err) { res.send(err); }
 			res.json({ userConsumable: userConsumable });
 		});
 };
 
-module.exports.udpateUserConsumable = function(req, res, id) {
+module.exports.updateUserConsumable = function(req, res, id) {
 	UserConsumable.findByIdAndUpdate(id, {$set: req.body.userConsumable}, function(err, userConsumable) {
 		if (err) { res.send(err); }
 		res.json({ userConsumable: userConsumable });

@@ -20,7 +20,7 @@ router.route('/users')
 ;
 router.route('/users/:id')
     .get(function(req, res) { UserRoutes.getSingleUser(req, res, req.params.id) })
-    .put(function(req, res) { UserRoutes.udpateUser(req, res, req.params.id) })
+    .put(function(req, res) { UserRoutes.updateUser(req, res, req.params.id) })
     .delete(function(req, res) { UserRoutes.deleteUser(req, res, req.params.id) })
 ;
 
@@ -32,7 +32,7 @@ router.route('/consumables')
 ;
 router.route('/consumables/:id')
     .get(function(req, res) { ConsumableRoutes.getSingleConsumable(req, res, req.params.id) })
-    .put(function(req, res) { ConsumableRoutes.udpateConsumable(req, res, req.params.id) })
+    .put(function(req, res) { ConsumableRoutes.updateConsumable(req, res, req.params.id) })
     .delete(function(req, res) { ConsumableRoutes.deleteConsumable(req, res, req.params.id) })
 ;
 
@@ -44,7 +44,7 @@ router.route('/userConsumables')
 ;
 router.route('/userConsumables/:id')
     .get(function(req, res) { UserConsumableRoutes.getSingleUserConsumable(req, res, req.params.id) })
-    .put(function(req, res) { UserConsumableRoutes.udpateUserConsumable(req, res, req.params.id) })
+    .put(function(req, res) { UserConsumableRoutes.updateUserConsumable(req, res, req.params.id) })
     .delete(function(req, res) { UserConsumableRoutes.deleteUserConsumable(req, res, req.params.id) })
 ;
 
