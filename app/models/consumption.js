@@ -6,6 +6,7 @@ var consumptionSchema = new Schema({
 	_consumer: { type: Schema.Types.ObjectId, ref: 'User', childPath: '_consumptions' }
 	, _consumable: { type: Schema.Types.ObjectId, ref: 'Consumable', childPath: '_consumptions' }
 	, consumeTime: Number
+	, consumed: Boolean
 });
 
 consumptionSchema.plugin(relationship, { relationshipPathName:'_consumer' });
