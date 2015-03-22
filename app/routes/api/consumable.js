@@ -17,11 +17,11 @@ module.exports.getAllConsumables = function(req, res) {
 
 module.exports.getSingleConsumable = function(req, res, id) {
 	Consumable.findById(id)
-		.populate({ path: '_users' })
+		.populate({ path: '_consumptions' })
 		.exec(function(err, consumableUnpopulated) {
 			if (err) { res.send(err); }
 			Consumable.populate(consumableUnpopulated
-				, { path: '_users._consumer', model: 'User' }
+				, { path: '_consumptions._consumer', model: 'User' }
 				, function(err, consumablePopulated) {
 					res.json({ consumable: consumablePopulated });
 				}

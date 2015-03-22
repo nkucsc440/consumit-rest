@@ -4,7 +4,7 @@ var relationship = require('mongoose-relationship');
 
 var ConsumableSchema = new Schema({
 	url: String
-	, _users: [{ type:Schema.ObjectId, ref:'UserConsumable' }]
+	, _consumptions: [{ type:Schema.ObjectId, ref:'Consumption' }]
 });
 
 module.exports = mongoose.model('Consumable', ConsumableSchema);

@@ -9,7 +9,7 @@ var UserSchema = new Schema({
 	, password: String
 	, firstName: String
 	, lastName: String
-	, _consumables: [{ type:Schema.ObjectId, ref:'UserConsumable' }]
+	, _consumptions: [{ type:Schema.ObjectId, ref:'Consumption' }]
 });
 
 module.exports = mongoose.model('User', UserSchema);

@@ -36,20 +36,20 @@ router.route('/consumables/:id')
     .delete(function(req, res) { ConsumableRoutes.deleteConsumable(req, res, req.params.id) })
 ;
 
-var UserConsumableRoutes = require('./api/userConsumable');
+var ConsumptionRoutes = require('./api/consumption');
 
-router.route('/userConsumables')
-    .post(function(req, res) { UserConsumableRoutes.addUserConsumable(req, res) })
-    .get(function(req, res) { UserConsumableRoutes.getAllUserConsumables(req, res) })
+router.route('/consumptions')
+    .post(function(req, res) { ConsumptionRoutes.addConsumption(req, res) })
+    .get(function(req, res) { ConsumptionRoutes.getAllConsumptions(req, res) })
 ;
-router.route('/userConsumables/:id')
-    .get(function(req, res) { UserConsumableRoutes.getSingleUserConsumable(req, res, req.params.id) })
-    .put(function(req, res) { UserConsumableRoutes.updateUserConsumable(req, res, req.params.id) })
-    .delete(function(req, res) { UserConsumableRoutes.deleteUserConsumable(req, res, req.params.id) })
+router.route('/consumptions/:id')
+    .get(function(req, res) { ConsumptionRoutes.getSingleConsumption(req, res, req.params.id) })
+    .put(function(req, res) { ConsumptionRoutes.updateConsumption(req, res, req.params.id) })
+    .delete(function(req, res) { ConsumptionRoutes.deleteConsumption(req, res, req.params.id) })
 ;
 
 router.route('/uc/:id')
-    .get(function(req, res) { UserConsumableRoutes.getAllConsumablesOfUser(req, res, req.params.id) })
+    .get(function(req, res) { ConsumptionRoutes.getAllConsumablesOfUser(req, res, req.params.id) })
 ;
 
 module.exports = router;
