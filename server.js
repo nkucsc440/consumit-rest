@@ -26,7 +26,7 @@ var allowCrossDomain = function(req, res, next) {
 };
 //----------------------------
 // app.use(cookieParser());
-// app.use(allowCrossDomain); //Add this
+app.use(allowCrossDomain); //Add this
 // app.use(express.static(path.join(__dirname, 'public')));
 
 var port = process.env.PORT || 8080;
