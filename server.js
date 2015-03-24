@@ -4,7 +4,7 @@ var bodyParser = require('body-parser');
 var mongoose = require('mongoose');
 // var passport = require('passport');
 // var LocalStrategy = require('passport-local').Strategy;
-var session = require('express-session');
+// var session = require('express-session');
 
 // bodyParser gets data POST requests
 app.use(bodyParser.urlencoded({ extended: true }));
