@@ -1,14 +1,17 @@
 {
-    "name": "node-api",
-    "main": "server.js",
-    "dependencies": {
-        "express": "~4.0.0",
-        "mongoose": "~3.6.13",
-        "body-parser": "~1.0.1",
-        "express-session": "^1.10.4",
-        "connect-flash": "^0.1.1",
-        "passport-local": "^1.0.0",
-        "mongoose-relationship": "^0.1.4",
-        "passport": "^0.2.1"
-    }
+  "name": "node-api",
+  "main": "server.js",
+  "dependencies": {
+    "express": "~4.0.0",
+    "mongoose": "~3.6.13",
+    "body-parser": "~1.0.1",
+    "express-session": "^1.10.4",
+    "connect-flash": "^0.1.1",
+    "passport-local": "^1.0.0",
+    "mongoose-relationship": "^0.1.4",
+    "passport": "^0.2.1",
+    "bcrypt-nodejs": "0.0.3",
+    "passport-http": "^0.2.2",
+    "underscore": "^1.8.2"
+  }
 }
