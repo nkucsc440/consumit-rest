@@ -33,6 +33,7 @@ var port = process.env.PORT || 8080;
 
 mongoose.connect('mongodb://consumit:consumit440@ds041821.mongolab.com:41821/consumit');
 
+app.use(passport.initialize());
 app.all('*', authenticateUser);
 
 function authenticateUser(req, res, next) {
@@ -42,7 +43,7 @@ function authenticateUser(req, res, next) {
   if (_.contains(nonSecurePaths, req.path) ) return next();
 
   var authController = require('./app/controllers/auth');
-  authController.isAuthenticated(req, res);
+  authController.isAuthenticated(req, res, next);
   next();
 }
 
@@ -52,7 +53,7 @@ app.use('/api', require('./app/routes/api'));
 // app.use(session({ secret: 'MAKETHISBETTER?'
 // 				, resave: false
 // 				, saveUninitialized: false }));
-app.use(passport.initialize());
+// app.use(passport.initialize());
 // app.use(passport.session());
 
 // start server

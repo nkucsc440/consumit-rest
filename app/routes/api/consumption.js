@@ -10,7 +10,7 @@ module.exports.addConsumption = function(req, res) {
 
 module.exports.getAllConsumptions = function(req, res) {
 	Consumption.find()
-		// .populate('_consumer _consumable')
+		// .populate('_user _consumable')
 		.exec(function(err, consumptions) {
 		if (err) { res.send(err); }
 		res.json({ consumptions: consumptions });
@@ -19,7 +19,7 @@ module.exports.getAllConsumptions = function(req, res) {
 
 module.exports.getSingleConsumption = function(req, res, id) {
 	Consumption.findById(id)
-		// .populate('_consumer _consumable')
+		// .populate('_user _consumable')
 		.exec(function(err, consumption) {
 			if (err) { res.send(err); }
 			res.json({ consumption: consumption });

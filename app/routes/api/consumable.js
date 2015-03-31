@@ -21,7 +21,7 @@ module.exports.getSingleConsumable = function(req, res, id) {
 		.exec(function(err, consumableUnpopulated) {
 			if (err) { res.send(err); }
 			Consumable.populate(consumableUnpopulated
-				, { path: '_consumptions._consumer', model: 'User' }
+				, { path: '_consumptions._user', model: 'User' }
 				, function(err, consumablePopulated) {
 					res.json({ consumable: consumablePopulated });
 				}
