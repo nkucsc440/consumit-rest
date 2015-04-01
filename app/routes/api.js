@@ -10,7 +10,19 @@ router.use(function(req, res, next) {
 
 
 router.route('/me')
-  .get(auth.isAuthenticated, function(req, res) { res.json(req.user); })
+  .get(auth.isAuthenticated, function(req, res) {
+    req.user
+    .populate({ path: '_consumptions' })
+		.exec(function(err, userUnpopulated) {
+			if (err) { res.send(err); }
+			User.populate(userUnpopulated
+				, { path: '_consumptions._consumable', model: 'Consumable'}
+				, function (err, userPopulated) {
+					res.json({ user: userPopulated });
+				}
+			);
+		});
+  })
 ;
 
 router.route('/auth')
