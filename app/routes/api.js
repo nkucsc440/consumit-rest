@@ -13,6 +13,10 @@ router.route('/me')
   .get(auth.isAuthenticated, function(req, res) { res.json(req.user); })
 ;
 
+router.route('/auth')
+  .get(auth.isAuthenticated, function(req, res) { res.json({ authenticated: true }); })
+;
+
 router.route('/')
     .get(function(req, res){ res.send('API docs') })
 ;
