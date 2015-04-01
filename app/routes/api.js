@@ -8,20 +8,21 @@ router.use(function(req, res, next) {
     next();
 });
 
-
+var User = require('../models/user');
 router.route('/me')
   .get(auth.isAuthenticated, function(req, res) {
-    req.user
-    .populate({ path: '_consumptions' })
-		.exec(function(err, userUnpopulated) {
-			if (err) { res.send(err); }
-			User.populate(userUnpopulated
-				, { path: '_consumptions._consumable', model: 'Consumable'}
-				, function (err, userPopulated) {
-					res.json({ user: userPopulated });
-				}
-			);
-		});
+
+    User.findById(req.user._id)
+      .populate({ path: '_consumptions', model: 'Consumption' })
+  		.exec(function(err, userUnpopulated) {
+  			if (err) { res.send(err); }
+  			User.populate(userUnpopulated
+  				, { path: '_consumptions._consumable', model: 'Consumable'}
+  				, function (err, userPopulated) {
+  					res.json({ user: userPopulated });
+  				}
+  			);
+  		});
   })
 ;
 
