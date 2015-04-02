@@ -1,6 +1,7 @@
 var Consumption = require('../../models/consumption');
 
 module.exports.addConsumption = function(req, res) {
+	req.body.consumption._user = req.user._id;
 	var consumption = new Consumption(req.body.consumption);
 	consumption.save(function(err) {
 		if (err) { res.send(err); }
