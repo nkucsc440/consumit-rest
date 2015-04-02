@@ -8,7 +8,9 @@ router.use(function(req, res, next) {
     next();
 });
 
+
 var User = require('../models/user');
+
 router.route('/me')
   .get(auth.isAuthenticated, function(req, res) {
 
