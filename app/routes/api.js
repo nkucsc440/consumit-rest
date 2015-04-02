@@ -15,15 +15,17 @@ router.route('/me')
   .get(auth.isAuthenticated, function(req, res) {
 
     User.findById(req.user._id)
-      .populate({ path: '_consumptions', model: 'Consumption' })
+      .select('_id _consumptions')
+      .populate({ path: '_consumptions', model: 'Consumption', match: { consumed: false }, select: '_id _consumable' })
   		.exec(function(err, userUnpopulated) {
   			if (err) { res.send(err); }
   			User.populate(userUnpopulated
-  				, { path: '_consumptions._consumable', model: 'Consumable'}
-  				, function (err, userPopulated) {
-  					res.json({ user: userPopulated });
-  				}
-  			);
+                    , { path: '_consumptions._consumable'
+                      , model: 'Consumable'
+                      , select: '_id url'}
+                      , function(err, userPopulated) {
+                          res.json({ user: userPopulated });
+                        });
   		});
   })
 ;
