@@ -16,7 +16,7 @@ router.route('/me')
 
     User.findById(req.user._id)
       .select('_id _consumptions')
-      .populate({ path: '_consumptions', model: 'Consumption', match: { consumed: false }, select: '_id _consumable' })
+      .populate({ path: '_consumptions', model: 'Consumption', match: { consumed: false }, select: '_id _consumable consumeTime' })
   		.exec(function(err, userUnpopulated) {
   			if (err) { res.send(err); }
   			User.populate(userUnpopulated
