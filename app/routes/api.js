@@ -22,7 +22,7 @@ router.route('/me')
   			User.populate(userUnpopulated
                     , { path: '_consumptions._consumable'
                       , model: 'Consumable'
-                      , select: '_id url'}
+                      , select: '_id url averageConsumeTime consumedCount'}
                       , function(err, userPopulated) {
                           res.json({ user: userPopulated });
                         });
