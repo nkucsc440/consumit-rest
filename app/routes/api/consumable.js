@@ -42,3 +42,56 @@ module.exports.deleteConsumable = function(req, res, id) {
 		res.send(200);
 	});
 };
+
+
+module.exports.updateAverageConsumeTime = function(req, res, id) {
+	var Consumption = require('../../models/consumption');
+	Consumption
+		.aggregate(
+			[
+				{ $match: {
+						_consumable: id
+				}}
+				, { $group: {
+						_id: '$_consumable'
+					, avgConsumeTime: { $avg: '$consumeTime' }
+				}}
+			]
+			, function(err, results) {
+					if (err) { console.error(err); }
+					else {
+						console.log('averageConsumeTime: ' + results[0].avgConsumeTime);
+						Consumable.update({ _id: id }, { averageConsumeTime: results[0].avgConsumeTime }, function(err, numAffected, raw) {
+							if (err) { console.error(err); }
+							else {
+							  // console.log('The number of updated documents was %d', numberAffected);
+							  console.log('The raw response from Mongo was ', raw);
+							}
+						});
+						// Consumable.findByIdAndUpdate(id, { $set: { averageConsumeTime: avgConsumeTime }}, function(err, consumable) {
+						// 	if (err) { console.error(err); }
+						// });
+					}
+				}
+		);
+};
+
+module.exports.updateConsumeCount = function(req, res, id) {
+	var Consumption = require('../../models/consumption');
+	Consumption.count({ _consumable: id, consumed: true }, function(err, c) {
+		if (err) { console.error(err); }
+		else {
+			console.log('count: ' + c);
+			Consumable.update({ _id: id }, { consumedCount: c }, function(err, numAffected, raw) {
+				if (err) { console.error(err); }
+				else {
+					// console.log('The number of updated documents was %d', numberAffected);
+					console.log('The raw response from Mongo was ', raw);
+				}
+			});
+			// Consumable.findByIdAndUpdate(id, { $set: { consumedCount: c }}, function(err, consumable) {
+			// 	if (err) { console.error(err); }
+			// });
+		}
+	});
+};

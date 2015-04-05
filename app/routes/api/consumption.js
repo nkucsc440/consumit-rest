@@ -31,6 +31,8 @@ module.exports.updateConsumption = function(req, res, id) {
 	Consumption.findByIdAndUpdate(id, {$set: req.body.consumption}, function(err, consumption) {
 		if (err) { res.send(err); }
 		res.json({ consumption: consumption });
+		require('./consumable').updateAverageConsumeTime(req, res, consumption._consumable);
+    require('./consumable').updateConsumeCount(req, res, consumption._consumable);
 	});
 };
 
