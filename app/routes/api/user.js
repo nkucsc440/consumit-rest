@@ -17,7 +17,7 @@ module.exports.getAllUsers = function(req, res) {
 
 module.exports.getSingleUser = function(req, res, id) {
 	User.findById(id)
-		.populate({ path: '_consumptions', model: 'Consumption' })
+		.populate({ path: '_consumptions', match: { consumed: false }, model: 'Consumption' })
 		.exec(function(err, userUnpopulated) {
 			if (err) { res.send(err); }
 			User.populate(userUnpopulated
