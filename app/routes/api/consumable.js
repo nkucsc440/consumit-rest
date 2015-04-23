@@ -43,6 +43,16 @@ module.exports.deleteConsumable = function(req, res, id) {
 	});
 };
 
+module.exports.getTopConsumables = function(req, res, n) {
+	Consumable
+		.find()
+		.sort({'consumedCount': -1})
+		.limit(n)
+		.exec(function(err, consumables) {
+			if (err) { res.send(err); }
+			res.json({ consumables: consumables });
+		});
+};
 
 module.exports.updateAverageConsumeTime = function(req, res, id) {
 	var Consumption = require('../../models/consumption');

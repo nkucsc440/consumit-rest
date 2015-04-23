@@ -61,6 +61,9 @@ router.route('/consumables/:id')
     // .put(function(req, res) { ConsumableRoutes.updateConsumable(req, res, req.params.id) })
     // .delete(function(req, res) { ConsumableRoutes.deleteConsumable(req, res, req.params.id) })
 ;
+router.route('/top/:n')
+  .get(function(req, res) { ConsumableRoutes.getTopConsumables(req, res, req.params.n) })
+;
 
 var ConsumptionRoutes = require('./api/consumption');
 
